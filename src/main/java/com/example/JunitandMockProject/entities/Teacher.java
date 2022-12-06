@@ -24,12 +24,20 @@ public class Teacher {
     @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
 
-    public TeacherDto teacherToDTO(Teacher teacher){
+    public static TeacherDto teacherToDTO(Teacher teacher){
         return  TeacherDto.builder()
-                .grade(teacher.getGrade())
                 .speciality(teacher.getSpeciality())
+                .grade(teacher.getGrade())
                 .name(teacher.getName())
                 .id(teacher.getId())
                 .build();
     }
+    public static  Teacher dtoToTeacher(TeacherDto teacherDto){
+        return Teacher.builder()
+                .name(teacherDto.getName())
+                .grade(teacherDto.getGrade())
+                .speciality(teacherDto.getSpeciality())
+                .build();
+    }
+
 }
